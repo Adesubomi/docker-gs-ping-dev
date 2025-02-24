@@ -53,12 +53,12 @@ type Message struct {
 
 func initStore() (*sql.DB, error) {
 
-	pgConnString := fmt.Sprintf("host=%s port=%s dbname=%s user=%s password=%s sslmode=disable",
+	pgConnString := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=disable",
+		os.Getenv("PGUSER"),
+		os.Getenv("PGPASSWORD"),
 		os.Getenv("PGHOST"),
 		os.Getenv("PGPORT"),
 		os.Getenv("PGDATABASE"),
-		os.Getenv("PGUSER"),
-		os.Getenv("PGPASSWORD"),
 	)
 
 	var (
